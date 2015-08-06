@@ -1,0 +1,874 @@
+<!DOCTYPE HTML><html><head><title>Carbon Black API documentation</title><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="generator" content="https://github.com/kevinrenskers/raml2html 2.0.2"><link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/styles/default.min.css"><script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script><script type="text/javascript" src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/highlight.min.js"></script><script type="text/javascript">
+      $(document).ready(function() {
+        $('.page-header pre code, .top-resource-description pre code').each(function(i, block) {
+          hljs.highlightBlock(block);
+        });
+
+        $('[data-toggle]').click(function() {
+          var selector = $(this).data('target') + ' pre code';
+          $(selector).each(function(i, block) {
+            hljs.highlightBlock(block);
+          });
+        });
+
+        // open modal on hashes like #_action_get
+        $(window).bind('hashchange', function(e) {
+          var anchor_id = document.location.hash.substr(1); //strip #
+          var element = $('#' + anchor_id);
+
+          // do we have such element + is it a modal?  --> show it
+          if (element.length && element.hasClass('modal')) {
+            element.modal('show');
+          }
+        });
+
+        // execute hashchange on first page load
+        $(window).trigger('hashchange');
+
+        // remove url fragment on modal hide
+        $('.modal').on('hidden.bs.modal', function() {
+          if(history && history.replaceState) {
+            history.replaceState({}, '', '#');
+          }
+        });
+      });
+    </script><style>
+      .hljs {
+        background: transparent;
+      }
+      .parent {
+        color: #999;
+      }
+      .list-group-item > .badge {
+        float: none;
+        margin-right: 6px;
+      }
+      .panel-title > .methods {
+        float: right;
+      }
+      .badge {
+        border-radius: 0;
+        text-transform: uppercase;
+        width: 70px;
+        font-weight: normal;
+        color: #f3f3f6;
+        line-height: normal;
+      }
+      .badge_get {
+        background-color: #63a8e2;
+      }
+      .badge_post {
+        background-color: #6cbd7d;
+      }
+      .badge_put {
+        background-color: #22bac4;
+      }
+      .badge_delete {
+        background-color: #d26460;
+      }
+      .badge_patch {
+        background-color: #ccc444;
+      }
+      .list-group, .panel-group {
+        margin-bottom: 0;
+      }
+      .panel-group .panel+.panel-white {
+        margin-top: 0;
+      }
+      .panel-group .panel-white {
+        border-bottom: 1px solid #F5F5F5;
+        border-radius: 0;
+      }
+      .panel-white:last-child {
+        border-bottom-color: white;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+      }
+      .panel-white .panel-heading {
+        background: white;
+      }
+      .tab-pane ul {
+        padding-left: 2em;
+      }
+      .tab-pane h2 {
+        font-size: 1.2em;
+        padding-bottom: 4px;
+        border-bottom: 1px solid #ddd;
+      }
+      .tab-pane h3 {
+        font-size: 1.1em;
+      }
+      .tab-content {
+        border-left: 1px solid #ddd;
+        border-right: 1px solid #ddd;
+        border-bottom: 1px solid #ddd;
+        padding: 10px;
+      }
+      #sidebar {
+        margin-top: 30px;
+        padding-right: 5px;
+        overflow: auto;
+        height: 90%;
+      }
+      .top-resource-description {
+        border-bottom: 1px solid #ddd;
+        background: #fcfcfc;
+        padding: 15px 15px 0 15px;
+        margin: -15px -15px 10px -15px;
+      }
+      .resource-description {
+        border-bottom: 1px solid #fcfcfc;
+        background: #fcfcfc;
+        padding: 15px 15px 0 15px;
+        margin: -15px -15px 10px -15px;
+      }
+      .resource-description p:last-child {
+        margin: 0;
+      }
+      .list-group .badge {
+        float: left;
+      }
+      .method_description {
+        margin-left: 85px;
+      }
+      .method_description p:last-child {
+        margin: 0;
+      }
+      .list-group-item {
+        cursor: pointer;
+      }
+      .list-group-item:hover {
+        background-color: #f5f5f5;
+      }
+    </style></head><body data-spy="scroll" data-target="#sidebar"><div class="container"><div class="row"><div class="col-md-9" role="main"><div class="page-header"><h1>Carbon Black API documentation <small>version 5.1</small></h1><p>https://{hostname}/api</p></div><div class="panel panel-default"><div class="panel-heading"><h3 id="api" class="panel-title">/api</h3></div><div class="panel-body"><div class="panel-group"><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_api_user__username_"><span class="parent">/api</span>/user/{username}</a> <span class="methods"><a href="#api_user__username__get"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span></a> <a href="#api_user__username__delete"><span class="badge badge_delete">delete <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span></a> <a href="#api_user__username__put"><span class="badge badge_put">put <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span></a></span></h4></div><div id="panel_api_user__username_" class="panel-collapse collapse"><div class="panel-body"><div class="resource-description"><p>Get information about or change a specific user</p></div><div class="list-group"><div onclick="window.location.href = '#api_user__username__get'" class="list-group-item"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span><div class="method_description"><p>Get information about a specific user</p></div><div class="clearfix"></div></div><div onclick="window.location.href = '#api_user__username__delete'" class="list-group-item"><span class="badge badge_delete">delete <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span><div class="method_description"><p>Delete a user from the Cb server</p></div><div class="clearfix"></div></div><div onclick="window.location.href = '#api_user__username__put'" class="list-group-item"><span class="badge badge_put">put <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span><div class="method_description"><p>Update information about a user. The userid to change must be specified in the "id" key of the JSON dictionary. If the username is to be changed, the new username is specified in the "username" key.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="api_user__username__get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span> <span class="parent">/api</span>/user/{username}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Get information about a specific user</p></div><div class="alert alert-warning"><span class="glyphicon glyphicon-lock" title="Authentication required"></span> Secured by cbSecurity</div><ul class="nav nav-tabs"><li class="active"><a href="#api_user__username__get_request" data-toggle="tab">Request</a></li><li><a href="#api_user__username__get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="api_user__username__get_request"><h3>URI Parameters</h3><ul><li><strong>username</strong>: <em>required (string)</em></li></ul></div><div class="tab-pane" id="api_user__username__get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
+  "username": "ben",
+  "first_name": "ben",
+  "last_name": "ben",
+  "global_admin": false,
+  "auth_token": "f78e48065c37f3cd9efa4ee2cf1dd2c66e6668c0",
+  "teams": [],
+  "email": "ben@example.com"
+}
+</code></pre></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="api_user__username__delete"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_delete">delete <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span> <span class="parent">/api</span>/user/{username}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Delete a user from the Cb server</p></div><div class="alert alert-warning"><span class="glyphicon glyphicon-lock" title="Authentication required"></span> Secured by cbSecurity</div><ul class="nav nav-tabs"><li class="active"><a href="#api_user__username__delete_request" data-toggle="tab">Request</a></li><li><a href="#api_user__username__delete_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="api_user__username__delete_request"><h3>URI Parameters</h3><ul><li><strong>username</strong>: <em>required (string)</em></li></ul></div><div class="tab-pane" id="api_user__username__delete_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
+  "result": "success"
+}
+</code></pre></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="api_user__username__put"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_put">put <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span> <span class="parent">/api</span>/user/{username}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Update information about a user. The userid to change must be specified in the "id" key of the JSON dictionary. If the username is to be changed, the new username is specified in the "username" key.</p></div><div class="alert alert-warning"><span class="glyphicon glyphicon-lock" title="Authentication required"></span> Secured by cbSecurity</div><ul class="nav nav-tabs"><li class="active"><a href="#api_user__username__put_request" data-toggle="tab">Request</a></li><li><a href="#api_user__username__put_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="api_user__username__put_request"><h3>URI Parameters</h3><ul><li><strong>username</strong>: <em>required (string)</em></li></ul><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
+  "username": "admin",
+  "first_name": "admin",
+  "last_name": "theadmin",
+  "global_admin": "true",
+  "teams": [
+    {
+      "id": "1",
+      "name": "\"Administrators\""
+    }
+  ],
+  "email": "admin@localhost",
+  "id": "admin"
+}
+</code></pre></div><div class="tab-pane" id="api_user__username__put_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
+  "result": "success"
+}
+</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_api_users"><span class="parent">/api</span>/users</a> <span class="methods"><a href="#api_users_get"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span></a></span></h4></div><div id="panel_api_users" class="panel-collapse collapse"><div class="panel-body"><div class="resource-description"><p>Get list of users authorized to use this Cb server</p></div><div class="list-group"><div onclick="window.location.href = '#api_users_get'" class="list-group-item"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span><div class="method_description"><p>Get list of users authorized to use this Cb server</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="api_users_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span> <span class="parent">/api</span>/users</h4></div><div class="modal-body"><div class="alert alert-info"><p>Get list of users authorized to use this Cb server</p></div><div class="alert alert-warning"><span class="glyphicon glyphicon-lock" title="Authentication required"></span> Secured by cbSecurity</div><ul class="nav nav-tabs"><li><a href="#api_users_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane" id="api_users_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>[
+  {
+    "username": "admin",
+    "first_name": "admin",
+    "last_name": "admin",
+    "global_admin": true,
+    "teams": [
+      {
+        "id": 1,
+        "name": "Administrators"
+      }
+    ],
+    "email": "root@localhost"
+  }
+]
+</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_api_useractivity"><span class="parent">/api</span>/useractivity</a> <span class="methods"><a href="#api_useractivity_get"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span></a></span></h4></div><div id="panel_api_useractivity" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#api_useractivity_get'" class="list-group-item"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span><div class="method_description"><p>Get a JSON report of login activity on this Cb server</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="api_useractivity_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span> <span class="parent">/api</span>/useractivity</h4></div><div class="modal-body"><div class="alert alert-info"><p>Get a JSON report of login activity on this Cb server</p></div><div class="alert alert-warning"><span class="glyphicon glyphicon-lock" title="Authentication required"></span> Secured by cbSecurity</div><ul class="nav nav-tabs"><li><a href="#api_useractivity_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane" id="api_useractivity_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>[
+  {
+    "username": "admin",
+    "user_id": 1,
+    "timestamp": "2015-08-04 14:26:15.184257-04:00",
+    "http_status": 200,
+    "http_description": "OK",
+    "ip_address": "::ffff:192.168.1.1",
+    "id": 1109
+  },
+  ...
+]
+</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_api_info"><span class="parent">/api</span>/info</a> <span class="methods"><a href="#api_info_get"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span></a></span></h4></div><div id="panel_api_info" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#api_info_get'" class="list-group-item"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span><div class="method_description"><p>Get information about the Cb server</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="api_info_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span> <span class="parent">/api</span>/info</h4></div><div class="modal-body"><div class="alert alert-info"><p>Get information about the Cb server</p></div><div class="alert alert-warning"><span class="glyphicon glyphicon-lock" title="Authentication required"></span> Secured by cbSecurity</div><ul class="nav nav-tabs"><li><a href="#api_info_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane" id="api_info_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+      "type": "object",
+      "$schema": "http://json-schema.org/draft-03/schema",
+      "id": "http://jsonschema.net",
+      "required": true,
+      "properties": {
+        "binaryPageSize": {
+          "type": "integer",
+          "required": true
+        },
+        "linuxInstallerExists": {
+          "type": "boolean",
+          "required": true,
+          "description": "Does this server contain a Linux installer bundle?"
+        },
+        "osxInstallerExists": {
+          "type": "boolean",
+          "required": true
+        }
+      }
+    }
+</code></pre><p><strong>Example</strong>:</p><pre><code>{"binaryPageSize": 10, "linuxInstallerExists": true, "binaryOrder": "", "timestampDeltaThreshold": 5, "osxInstallerExists": true, "liveResponseAutoAttach": true, "version": "5.0.0.150528.1341", "cblrEnabled": true, "processOrder": "", "processPageSize": 10, "vdiGloballyEnabled": false, "searchExportCount": 1000, "maxSearchResultRows": 1000}
+</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_api_v1_process"><span class="parent">/api/v1</span>/process</a> <span class="methods"><a href="#api_v1_process_get"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span></a> <a href="#api_v1_process_post"><span class="badge badge_post">post <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span></a></span></h4></div><div id="panel_api_v1_process" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#api_v1_process_get'" class="list-group-item"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span><div class="method_description"><p>Search the Cb event (process) data store</p></div><div class="clearfix"></div></div><div onclick="window.location.href = '#api_v1_process_post'" class="list-group-item"><span class="badge badge_post">post <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span><div class="method_description"><p>Search the Cb event (process) data store</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="api_v1_process_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span> <span class="parent">/api/v1</span>/process</h4></div><div class="modal-body"><div class="alert alert-info"><p>Search the Cb event (process) data store</p></div><div class="alert alert-warning"><span class="glyphicon glyphicon-lock" title="Authentication required"></span> Secured by cbSecurity</div><ul class="nav nav-tabs"><li class="active"><a href="#api_v1_process_get_request" data-toggle="tab">Request</a></li><li><a href="#api_v1_process_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="api_v1_process_get_request"><h3>Query Parameters</h3><ul><li><strong>q</strong>: <em>(string)</em><p>Query string. See <a href="https://github.com/carbonblack/cbapi/blob/master/client_apis/docs/query_overview.pdf">https://github.com/carbonblack/cbapi/blob/master/client_apis/docs/query_overview.pdf</a></p><p><strong>Example</strong>:</p><pre>product_name:"Visual Studio"</pre></li><li><strong>start</strong>: <em>(string)</em><p>Starting result number for this batch</p></li><li><strong>sort</strong>: <em>(string - default: server_added_timestamp desc)</em><p>Sort by this field &amp; direction (asc or desc)</p></li><li><strong>facet</strong>: <em>(boolean - default: true)</em><p>Enable or disable facets for this query</p></li><li><strong>rows</strong>: <em>(integer - default: 10)</em><p>Number of rows to fetch</p></li></ul></div><div class="tab-pane" id="api_v1_process_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
+  "results": [
+    {
+      "process_md5": "ac4c51eb24aa95b77f705ab159189e24", 
+      "process_name": "explorer.exe", 
+      "group": "Default Group", 
+      "segment_id": 1, 
+      "netconn_count": 0, 
+      "hostname": "WIN-EP7RMLTCLAJ", 
+      "last_update": "2013-08-22T15:00:02Z", 
+      "start": "2013-08-14T13:41:57Z", 
+      "sensor_id": 2, 
+      "modload_count": 103, 
+      "path": "c:\\windows\\explorer.exe", 
+      "regmod_count": 355, 
+      "filemod_count": 10, 
+      "id": "-3748189368838069954", 
+      "unique_id": "cbfbc1a0-b782-e13e-0000-000000000001", 
+      "childproc_count": 7,
+      "os_type: "windows"
+    }, 
+  ], 
+  "terms": [
+    "notepad.exe"
+  ], 
+  "total_results": 1, 
+  "elapsed": 0.8763120174407959, 
+  "start": 0, 
+  "facets": {}, 
+  "events": [
+    {
+      "name": "\\registry\\user\\s-1-5-21-2445116603-3509627529-3207332553-1000_classes\\local settings\\software\\microsoft\\windows\\shell\\muicache\\c:\\windows\\system32\\PREPREPREnotepad.exePOSTPOSTPOST", 
+      "ids": [
+        "cbfbc1a0-b782-e13e-0000-000000000001"
+      ]
+    }, 
+  ]
+  "tagged_pids": {  }, 
+  "filtered": {}, 
+}
+</code></pre></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="api_v1_process_post"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_post">post <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span> <span class="parent">/api/v1</span>/process</h4></div><div class="modal-body"><div class="alert alert-info"><p>Search the Cb event (process) data store</p></div><div class="alert alert-warning"><span class="glyphicon glyphicon-lock" title="Authentication required"></span> Secured by cbSecurity</div><ul class="nav nav-tabs"><li class="active"><a href="#api_v1_process_post_request" data-toggle="tab">Request</a></li><li><a href="#api_v1_process_post_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="api_v1_process_post_request"><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "$schema": "http://json-schema.org/draft-03/schema",
+  "required": true,
+  "type": "object",
+  "id": "http://jsonschema.net",
+  "properties": {
+    "q": {
+      "required": false,
+      "type": "string",
+      "description": "Query string. See https://github.com/carbonblack/cbapi/blob/master/client_apis/docs/query_overview.pdf",
+      "example": "product_name:\"Visual Studio\""
+    },
+    "start": {
+      "default": 0,
+      "required": false,
+      "description": "Starting result number for this batch"
+    },
+    "rows": {
+      "default": 10,
+      "required": false,
+      "type": "integer",
+      "description": "Number of rows to fetch"
+    },
+    "facet": {
+      "default": true,
+      "required": false,
+      "type": "boolean",
+      "description": "Enable or disable facets for this query"
+    },
+    "sort": {
+      "default": "server_added_timestamp desc",
+      "description": "Sort by this field &amp; direction (asc or desc)",
+      "required": false
+    }
+  }
+}
+</code></pre></div><div class="tab-pane" id="api_v1_process_post_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
+  "results": [
+    {
+      "process_md5": "ac4c51eb24aa95b77f705ab159189e24", 
+      "process_name": "explorer.exe", 
+      "group": "Default Group", 
+      "segment_id": 1, 
+      "netconn_count": 0, 
+      "hostname": "WIN-EP7RMLTCLAJ", 
+      "last_update": "2013-08-22T15:00:02Z", 
+      "start": "2013-08-14T13:41:57Z", 
+      "sensor_id": 2, 
+      "modload_count": 103, 
+      "path": "c:\\windows\\explorer.exe", 
+      "regmod_count": 355, 
+      "filemod_count": 10, 
+      "id": "-3748189368838069954", 
+      "unique_id": "cbfbc1a0-b782-e13e-0000-000000000001", 
+      "childproc_count": 7,
+      "os_type: "windows"
+    }, 
+  ], 
+  "terms": [
+    "notepad.exe"
+  ], 
+  "total_results": 1, 
+  "elapsed": 0.8763120174407959, 
+  "start": 0, 
+  "facets": {}, 
+  "events": [
+    {
+      "name": "\\registry\\user\\s-1-5-21-2445116603-3509627529-3207332553-1000_classes\\local settings\\software\\microsoft\\windows\\shell\\muicache\\c:\\windows\\system32\\PREPREPREnotepad.exePOSTPOSTPOST", 
+      "ids": [
+        "cbfbc1a0-b782-e13e-0000-000000000001"
+      ]
+    }, 
+  ]
+  "tagged_pids": {  }, 
+  "filtered": {}, 
+}
+</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_api_v1_process__guid___segment_"><span class="parent">/api/v1/process</span>/{guid}/{segment}</a> <span class="methods"><a href="#api_v1_process__guid___segment__get"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span></a></span></h4></div><div id="panel_api_v1_process__guid___segment_" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#api_v1_process__guid___segment__get'" class="list-group-item"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span><div class="method_description"><p>Retrieve summary information and parent/sibling relationships for the given process GUID and segment. The GUID is the <code>id</code> value from the search results; the segment is the <code>segment_id</code> from search results.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="api_v1_process__guid___segment__get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span> <span class="parent">/api/v1/process</span>/{guid}/{segment}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Retrieve summary information and parent/sibling relationships for the given process GUID and segment. The GUID is the <code>id</code> value from the search results; the segment is the <code>segment_id</code> from search results.</p></div><div class="alert alert-warning"><span class="glyphicon glyphicon-lock" title="Authentication required"></span> Secured by cbSecurity</div><ul class="nav nav-tabs"><li class="active"><a href="#api_v1_process__guid___segment__get_request" data-toggle="tab">Request</a></li><li><a href="#api_v1_process__guid___segment__get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="api_v1_process__guid___segment__get_request"><h3>URI Parameters</h3><ul><li><strong>guid</strong>: <em>required (string)</em></li><li><strong>segment</strong>: <em>required (string)</em></li></ul></div><div class="tab-pane" id="api_v1_process__guid___segment__get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
+  "process": {
+    "process_md5": "517110bd83835338c037269e603db55d", 
+    "sensor_id": 2, 
+    "group": "Default Group", 
+    "start": "2013-09-19T22:07:07Z", 
+    "process_name": "taskhost.exe", 
+    "segment_id": 1, 
+    "last_update": "2013-09-19T22:09:07Z", 
+    "cmdline": "taskhost.exe $(arg0)", 
+    "hostname": "WIN-EP7RMLTCLAJ", 
+    "parent_id": "5856845119039539348", 
+    "path": "c:\\windows\\system32\\taskhost.exe", 
+    "id": "2032659773721368929",
+    "os_type": "windows"
+  }, 
+  "siblings": [
+    {
+      "process_md5": "c78655bc80301d76ed4fef1c1ea40a7d", 
+      "sensor_id": 2, 
+      "group": "Default Group", 
+      "parent_id": "5856845119039539348", 
+      "process_name": "svchost.exe", 
+      "segment_id": 1, 
+      "last_update": "2013-09-19T22:34:49Z", 
+      "start": "2013-09-10T04:10:07Z", 
+      "hostname": "WIN-EP7RMLTCLAJ", 
+      "path": "c:\\windows\\system32\\svchost.exe", 
+      "id": "5286285292765095481",
+      "os_type": "windows"
+    }, 
+  ], 
+  "children": [], 
+  "parent": {
+    "process_md5": "24acb7e5be595468e3b9aa488b9b4fcb", 
+    "sensor_id": 2, 
+    "group": "Default Group", 
+    "parent_id": "4245649408199694328", 
+    "process_name": "services.exe", 
+    "segment_id": 1, 
+    "last_update": "2013-09-19T22:09:07Z", 
+    "start": "2013-09-10T04:09:51Z", 
+    "hostname": "WIN-EP7RMLTCLAJ", 
+    "path": "c:\\windows\\system32\\services.exe", 
+    "id": "5856845119039539348",
+    "os_type": "windows"
+  }
+}
+</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_api_v1_process__guid___segment__event"><span class="parent">/api/v1/process/{guid}/{segment}</span>/event</a> <span class="methods"><a href="#api_v1_process__guid___segment__event_get"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span></a></span></h4></div><div id="panel_api_v1_process__guid___segment__event" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#api_v1_process__guid___segment__event_get'" class="list-group-item"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span><div class="method_description"><p>Retrieve the detailed list of events associated with the given process GUID and segment. The GUID is the <code>id</code> value from the search results; the segment is the <code>segment_id</code> from search results.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="api_v1_process__guid___segment__event_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span> <span class="parent">/api/v1/process/{guid}/{segment}</span>/event</h4></div><div class="modal-body"><div class="alert alert-info"><p>Retrieve the detailed list of events associated with the given process GUID and segment. The GUID is the <code>id</code> value from the search results; the segment is the <code>segment_id</code> from search results.</p></div><div class="alert alert-warning"><span class="glyphicon glyphicon-lock" title="Authentication required"></span> Secured by cbSecurity</div><ul class="nav nav-tabs"><li class="active"><a href="#api_v1_process__guid___segment__event_get_request" data-toggle="tab">Request</a></li><li><a href="#api_v1_process__guid___segment__event_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="api_v1_process__guid___segment__event_get_request"><h3>URI Parameters</h3><ul><li><strong>guid</strong>: <em>required (string)</em></li><li><strong>segment</strong>: <em>required (string)</em></li></ul></div><div class="tab-pane" id="api_v1_process__guid___segment__event_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{"process": 
+  {"process_md5": "517110bd83835338c037269e603db55d", 
+  "sensor_id": 2, 
+  "group": "Default Group", 
+  "start": "2013-09-19T22:07:07Z",
+  "process_name": "taskhost.exe", 
+  "segment_id": 1,
+  "os_type": "windows",
+  "regmod_complete": [
+        "2|2013-09-19 22:07:07.000000|\\registry\\user\\s-1-5-19\\software\\microsoft\\sqmclient\\reliability\\adaptivesqm\\manifestinfo\\version", 
+        "2|2013-09-19 22:09:07.000000|\\registry\\machine\\software\\microsoft\\reliability analysis\\rac\\wmilasttime"
+        ], 
+  "parent_id": "5856845119039539348", 
+  "cmdline": "taskhost.exe $(arg0)", 
+  "filemod_complete": [
+        "2|2013-09-19 22:07:07.000000|c:\\programdata\\microsoft\\rac\\statedata\\racmetadata.dat|", 
+        "2|2013-09-19 22:07:07.000000|c:\\programdata\\microsoft\\rac\\temp\\sql4475.tmp|", 
+        "2|2013-09-19 22:07:07.000000|c:\\programdata\\microsoft\\rac\\temp\\sql4486.tmp|", 
+        "2|2013-09-19 22:09:07.000000|c:\\programdata\\microsoft\\rac\\statedata\\racwmidatabookmarks.dat|", 
+        "2|2013-09-19 22:09:07.000000|c:\\programdata\\microsoft\\rac\\publisheddata\\racwmidatabase.sdf|", 
+        "4|2013-09-19 22:09:07.000000|c:\\programdata\\microsoft\\rac\\temp\\sql4486.tmp|", 
+        "2|2013-09-19 22:09:07.000000|c:\\programdata\\microsoft\\rac\\statedata\\racdatabase.sdf|", 
+        "4|2013-09-19 22:09:07.000000|c:\\programdata\\microsoft\\rac\\temp\\sql4475.tmp|"
+        ], 
+  "hostname": "WIN-EP7RMLTCLAJ", 
+  "modload_complete": [
+        "2013-09-19 22:07:07.000000|517110bd83835338c037269e603db55d|c:\\windows\\system32\\taskhost.exe", 
+        "2013-09-19 22:07:07.000000|3556d5a8bf2cc508bdab51dec38d7c61|c:\\windows\\system32\\ntdll.dll", 
+        "2013-09-19 22:07:07.000000|7a6326d96d53048fdec542df23d875a0|c:\\windows\\system32\\kernel32.dll", 
+        "2013-09-19 22:07:07.000000|9c75cb8b98610f0cd85d99bb5876308b|c:\\windows\\system32\\sqlcese30.dll", 
+        "2013-09-19 22:07:07.000000|e5744d18c88737c6356d0a8d6d49d512|c:\\windows\\system32\\sqlceqp30.dll", 
+        "2013-09-19 22:07:07.000000|021287c2050fd5db4a8b084e2c38139c|c:\\windows\\system32\\winsatapi.dll", 
+        "2013-09-19 22:07:07.000000|f404e59db6a0f122ab26bf4f3e2fd0fa|c:\\windows\\system32\\dxgi.dll", 
+        "2013-09-19 22:07:07.000000|da1b7075260f3872585bfcdd668c648b|c:\\windows\\system32\\dwmapi.dll", 
+        "2013-09-19 22:07:07.000000|497bfeddaf3950dd909c3b0c5558a25d|c:\\windows\\winsxs\\amd64_microsoft.windows.gdiplus_6595b64144ccf1df_1.1.7601.17514_none_2b24536c71ed437a\\gdiplus.dll", 
+        "2013-09-19 22:07:07.000000|5d8e6c95156ed1f79a63d1eade6f9ed5|c:\\windows\\system32\\setupapi.dll", 
+        "2013-09-19 22:07:07.000000|2a86e54b441ad41557f75dc5609b9793|c:\\windows\\system32\\sspicli.dll", 
+        "2013-09-19 22:07:07.000000|d6f630c1fd7f436316093ae500363b19|c:\\windows\\system32\\xmllite.dll"
+      ], 
+  "path": "c:\\windows\\system32\\taskhost.exe", 
+  "last_update": "2013-09-19T22:09:07Z", 
+  "id": "2032659773721368929"
+  }, 
+  "elapsed": 0.0126001834869
+}
+</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_api_v1_process__guid___segment__preview"><span class="parent">/api/v1/process/{guid}/{segment}</span>/preview</a> <span class="methods"><a href="#api_v1_process__guid___segment__preview_get"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span></a></span></h4></div><div id="panel_api_v1_process__guid___segment__preview" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#api_v1_process__guid___segment__preview_get'" class="list-group-item"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span><div class="method_description"><p>Retrieve an abridged list of events associated with the given process GUID and segment. The optional <code>q</code> parameter can be used to highlight specific terms in the event list. The GUID is the <code>id</code> value from the search results; the segment is the <code>segment_id</code> from search results.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="api_v1_process__guid___segment__preview_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span> <span class="parent">/api/v1/process/{guid}/{segment}</span>/preview</h4></div><div class="modal-body"><div class="alert alert-info"><p>Retrieve an abridged list of events associated with the given process GUID and segment. The optional <code>q</code> parameter can be used to highlight specific terms in the event list. The GUID is the <code>id</code> value from the search results; the segment is the <code>segment_id</code> from search results.</p></div><div class="alert alert-warning"><span class="glyphicon glyphicon-lock" title="Authentication required"></span> Secured by cbSecurity</div><ul class="nav nav-tabs"><li class="active"><a href="#api_v1_process__guid___segment__preview_get_request" data-toggle="tab">Request</a></li><li><a href="#api_v1_process__guid___segment__preview_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="api_v1_process__guid___segment__preview_get_request"><h3>URI Parameters</h3><ul><li><strong>guid</strong>: <em>required (string)</em></li><li><strong>segment</strong>: <em>required (string)</em></li></ul><h3>Query Parameters</h3><ul><li><strong>q</strong>: <em>(string)</em><p>Terms to highlight in the result set</p></li></ul></div><div class="tab-pane" id="api_v1_process__guid___segment__preview_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
+  "parent_name": "", 
+  "hostname": "J-8205A0C27A0C4", 
+  "group": "Default Group", 
+  "process_md5": "5e7f3968069d32b26af0d7af0ec5dd97", 
+  "netconn_count": 1, 
+  "process_name": "svchost.exe", 
+  "last_update": "2013-10-07T15:07:09Z", 
+  "cmdline": "\"c:\\docume~1\\admini~1\\locals~1\\temp\\rad17929.tmp\\svchost.exe\" ", 
+  "start": "2013-10-07T15:07:09Z", 
+  "sensor_id": 1, 
+  "modload_count": 15, 
+  "modload_complete": [
+    "2013-10-07 15:07:09.000000|27d9ed8cb8b62d1e0a8e5ace6cf52e2f|c:\\PREPREPREwindowsPOSTPOSTPOST\\system32\\ntdll.dll", 
+    "2013-10-07 15:07:09.000000|c24b983d211c34da8fcc1ac38477971d|c:\\PREPREPREwindowsPOSTPOSTPOST\\system32\\kernel32.dll", 
+    "2013-10-07 15:07:09.000000|355edbb4d412b01f1740c17e3f50fa00|c:\\PREPREPREwindowsPOSTPOSTPOST\\system32\\msvcrt.dll", 
+    "2013-10-07 15:07:09.000000|bab489a5fe26f2d0c910cf7af7e4cf92|c:\\PREPREPREwindowsPOSTPOSTPOST\\system32\\advapi32.dll", 
+    "2013-10-07 15:07:09.000000|b979d9d1c8073da21a7f80345f306a1d|c:\\PREPREPREwindowsPOSTPOSTPOST\\system32\\rpcrt4.dll", 
+    "2013-10-07 15:07:09.000000|7459c16cc3ef4651cab7c9260e43fc58|c:\\PREPREPREwindowsPOSTPOSTPOST\\system32\\secur32.dll", 
+    "2013-10-07 15:07:09.000000|67156d5a9ac356dc99d7bccb388e3316|c:\\PREPREPREwindowsPOSTPOSTPOST\\system32\\wsock32.dll", 
+    "2013-10-07 15:07:09.000000|2ccc474eb85ceaa3e1fa1726580a3e5a|c:\\PREPREPREwindowsPOSTPOSTPOST\\system32\\ws2_32.dll", 
+    "2013-10-07 15:07:09.000000|9789e95e1d88eeb4b922bf3ea7779c28|c:\\PREPREPREwindowsPOSTPOSTPOST\\system32\\ws2help.dll", 
+    "2013-10-07 15:07:09.000000|b4138e99236f0f57d4cf49bae98a0746|c:\\PREPREPREwindowsPOSTPOSTPOST\\system32\\mswsock.dll"
+  ], 
+  "path": "c:\\documents and settings\\administrator\\local settings\\temp\\rad17929.tmp\\svchost.exe", 
+  "regmod_count": 0, 
+  "filemod_count": 0, 
+  "segment": "", 
+  "id": "7078511340675742078", 
+  "unique_id": "623bec8f-8f8d-397e-0000-000000000001",
+  "os_type": "windows"
+}
+</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_api_v1_process__guid___segment__report"><span class="parent">/api/v1/process/{guid}/{segment}</span>/report</a> <span class="methods"><a href="#api_v1_process__guid___segment__report_get"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span></a></span></h4></div><div id="panel_api_v1_process__guid___segment__report" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#api_v1_process__guid___segment__report_get'" class="list-group-item"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span><div class="method_description"><p>Retrieve a zipped report of all events from a process, with CSV output of regmod, netconn, filemod, and modload activity. The GUID is the <code>id</code> value from the search results; the segment is the <code>segment_id</code> from search results.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="api_v1_process__guid___segment__report_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span> <span class="parent">/api/v1/process/{guid}/{segment}</span>/report</h4></div><div class="modal-body"><div class="alert alert-info"><p>Retrieve a zipped report of all events from a process, with CSV output of regmod, netconn, filemod, and modload activity. The GUID is the <code>id</code> value from the search results; the segment is the <code>segment_id</code> from search results.</p></div><div class="alert alert-warning"><span class="glyphicon glyphicon-lock" title="Authentication required"></span> Secured by cbSecurity</div><ul class="nav nav-tabs"><li class="active"><a href="#api_v1_process__guid___segment__report_get_request" data-toggle="tab">Request</a></li><li><a href="#api_v1_process__guid___segment__report_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="api_v1_process__guid___segment__report_get_request"><h3>URI Parameters</h3><ul><li><strong>guid</strong>: <em>required (string)</em></li><li><strong>segment</strong>: <em>required (string)</em></li></ul></div><div class="tab-pane" id="api_v1_process__guid___segment__report_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/zip</strong></p><p><strong>Example</strong>:</p><pre><code>Archive:  process.zip
+ extracting: csv/filemods.csv
+ extracting: csv/regmods.csv
+ extracting: csv/modloads.csv
+ extracting: csv/netconn.csv
+ extracting: json/process.json
+ extracting: json/summary.json
+</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_api_v1_sensor"><span class="parent">/api/v1</span>/sensor</a> <span class="methods"><a href="#api_v1_sensor_get"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span></a></span></h4></div><div id="panel_api_v1_sensor" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#api_v1_sensor_get'" class="list-group-item"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span><div class="method_description"><p>Get a list of all sensors</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="api_v1_sensor_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span> <span class="parent">/api/v1</span>/sensor</h4></div><div class="modal-body"><div class="alert alert-info"><p>Get a list of all sensors</p></div><div class="alert alert-warning"><span class="glyphicon glyphicon-lock" title="Authentication required"></span> Secured by cbSecurity</div><ul class="nav nav-tabs"><li class="active"><a href="#api_v1_sensor_get_request" data-toggle="tab">Request</a></li><li><a href="#api_v1_sensor_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="api_v1_sensor_get_request"><h3>Query Parameters</h3><ul><li><strong>groupid</strong>: <em>(integer)</em><p>Filter the list by only sensors in a specific sensor group ID</p></li><li><strong>hostname</strong>: <em>(string)</em><p>Filter the list by only sensors that match the given hostname</p></li><li><strong>ip</strong>: <em>(string)</em><p>Filter the list by only sensors that have the given IP address</p></li></ul></div><div class="tab-pane" id="api_v1_sensor_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><p>An array of sensor details (see /api/v1/sensor/{id} route)</p></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_api_v1_sensor__id_"><span class="parent">/api/v1/sensor</span>/{id}</a> <span class="methods"><a href="#api_v1_sensor__id__get"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span></a> <a href="#api_v1_sensor__id__put"><span class="badge badge_put">put <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span></a></span></h4></div><div id="panel_api_v1_sensor__id_" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#api_v1_sensor__id__get'" class="list-group-item"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span><div class="method_description"><p>Get details about a sensor</p></div><div class="clearfix"></div></div><div onclick="window.location.href = '#api_v1_sensor__id__put'" class="list-group-item"><span class="badge badge_put">put <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span><div class="method_description"><p>Update sensor <code>event_log_flush_time</code> parameter. This will force the sensor to flush the latest event data to the Cb server. You must first GET the current details from the sensor and reflect them back to the PUT endpoint in order for the request to succeed. See <code>sensor_flush_current</code> in <a href="https://github.com/carbonblack/cbapi/blob/master/client_apis/python/src/cbapi/cbapi.py">https://github.com/carbonblack/cbapi/blob/master/client_apis/python/src/cbapi/cbapi.py</a> for more information.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="api_v1_sensor__id__get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span> <span class="parent">/api/v1/sensor</span>/{id}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Get details about a sensor</p></div><div class="alert alert-warning"><span class="glyphicon glyphicon-lock" title="Authentication required"></span> Secured by cbSecurity</div><ul class="nav nav-tabs"><li class="active"><a href="#api_v1_sensor__id__get_request" data-toggle="tab">Request</a></li><li><a href="#api_v1_sensor__id__get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="api_v1_sensor__id__get_request"><h3>URI Parameters</h3><ul><li><strong>id</strong>: <em>required (string)</em></li></ul></div><div class="tab-pane" id="api_v1_sensor__id__get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
+  "systemvolume_total_size": "64422408192",
+  "emet_telemetry_path": "",
+  "os_environment_display_string": "Windows 8.1 Core, 64-bit",
+  "emet_version": "",
+  "emet_dump_flags": "",
+  "clock_delta": "297",
+  "supports_cblr": true,
+  "sensor_uptime": "2613055",
+  "last_update": "2015-08-01 20:19:05.758286-04:00",
+  "physical_memory_size": "1882705920",
+  "build_id": 7,
+  "uptime": "5486407",
+  "is_isolating": false,
+  "event_log_flush_time": null,
+  "computer_dns_name": "JASON-WIN81-VM",
+  "emet_report_setting": " (Locally configured)",
+  "id": 1,
+  "emet_process_count": 0,
+  "emet_is_gpo": false,
+  "power_state": 0,
+  "network_isolation_enabled": false,
+  "uninstalled": false,
+  "systemvolume_free_size": "35843416064",
+  "status": "Offline",
+  "num_eventlog_bytes": "5574152",
+  "sensor_health_message": "Healthy",
+  "build_version_string": "005.001.000.50618",
+  "computer_sid": "S-1-5-21-2709706146-4189370754-997381202",
+  "next_checkin_time": "2015-08-01 20:19:31.894994-04:00",
+  "node_id": 0,
+  "cookie": 158698462,
+  "emet_exploit_action": " (Locally configured)",
+  "computer_name": "JASON-WIN81-VM",
+  "license_expiration": "1990-01-01 00:00:00-05:00",
+  "supports_isolation": true,
+  "parity_host_id": "0",
+  "supports_2nd_gen_modloads": false,
+  "network_adapters": "172.22.5.152,000c29416691|",
+  "sensor_health_status": 100,
+  "registration_time": "2015-06-18 11:47:58.610363-04:00",
+  "restart_queued": false,
+  "notes": null,
+  "num_storefiles_bytes": "1789336",
+  "os_environment_id": 3,
+  "shard_id": 0,
+  "boot_id": "8",
+  "last_checkin_time": "2015-08-01 20:19:01.896116-04:00",
+  "os_type": 1,
+  "group_id": 1,
+  "display": true,
+  "uninstall": false
+}
+</code></pre></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="api_v1_sensor__id__put"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_put">put <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span> <span class="parent">/api/v1/sensor</span>/{id}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Update sensor <code>event_log_flush_time</code> parameter. This will force the sensor to flush the latest event data to the Cb server. You must first GET the current details from the sensor and reflect them back to the PUT endpoint in order for the request to succeed. See <code>sensor_flush_current</code> in <a href="https://github.com/carbonblack/cbapi/blob/master/client_apis/python/src/cbapi/cbapi.py">https://github.com/carbonblack/cbapi/blob/master/client_apis/python/src/cbapi/cbapi.py</a> for more information.</p></div><div class="alert alert-warning"><span class="glyphicon glyphicon-lock" title="Authentication required"></span> Secured by cbSecurity</div><ul class="nav nav-tabs"><li class="active"><a href="#api_v1_sensor__id__put_request" data-toggle="tab">Request</a></li></ul><div class="tab-content"><div class="tab-pane active" id="api_v1_sensor__id__put_request"><h3>URI Parameters</h3><ul><li><strong>id</strong>: <em>required (string)</em></li></ul></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_api_v1_sensor__id__activity"><span class="parent">/api/v1/sensor/{id}</span>/activity</a> <span class="methods"><a href="#api_v1_sensor__id__activity_get"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span></a></span></h4></div><div id="panel_api_v1_sensor__id__activity" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#api_v1_sensor__id__activity_get'" class="list-group-item"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span><div class="method_description"><p>Get a JSON report of a sensor&#39;s checkin activity</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="api_v1_sensor__id__activity_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span> <span class="parent">/api/v1/sensor/{id}</span>/activity</h4></div><div class="modal-body"><div class="alert alert-info"><p>Get a JSON report of a sensor&#39;s checkin activity</p></div><div class="alert alert-warning"><span class="glyphicon glyphicon-lock" title="Authentication required"></span> Secured by cbSecurity</div><ul class="nav nav-tabs"><li class="active"><a href="#api_v1_sensor__id__activity_get_request" data-toggle="tab">Request</a></li><li><a href="#api_v1_sensor__id__activity_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="api_v1_sensor__id__activity_get_request"><h3>URI Parameters</h3><ul><li><strong>id</strong>: <em>required (string)</em></li></ul></div><div class="tab-pane" id="api_v1_sensor__id__activity_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>[
+  {
+    "exception": null,
+    "sensor_id": 1,
+    "byte_count": "183",
+    "timestamp": "2015-08-01 20:19:01.896116-04:00",
+    "site_id": 1,
+    "execute_time": "0:00:00.008067",
+    "type": 1,
+    "id": 138536
+  },
+  ...
+]
+</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_api_v1_sensor__id__commfailures"><span class="parent">/api/v1/sensor/{id}</span>/commfailures</a> <span class="methods"><a href="#api_v1_sensor__id__commfailures_get"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span></a></span></h4></div><div id="panel_api_v1_sensor__id__commfailures" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#api_v1_sensor__id__commfailures_get'" class="list-group-item"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span><div class="method_description"><p>Get a JSON report of any communication failures reported by the sensor</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="api_v1_sensor__id__commfailures_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span> <span class="parent">/api/v1/sensor/{id}</span>/commfailures</h4></div><div class="modal-body"><div class="alert alert-info"><p>Get a JSON report of any communication failures reported by the sensor</p></div><div class="alert alert-warning"><span class="glyphicon glyphicon-lock" title="Authentication required"></span> Secured by cbSecurity</div><ul class="nav nav-tabs"><li class="active"><a href="#api_v1_sensor__id__commfailures_get_request" data-toggle="tab">Request</a></li><li><a href="#api_v1_sensor__id__commfailures_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="api_v1_sensor__id__commfailures_get_request"><h3>URI Parameters</h3><ul><li><strong>id</strong>: <em>required (string)</em></li></ul></div><div class="tab-pane" id="api_v1_sensor__id__commfailures_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><p>JSON array of communication failure codes</p><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>[
+  {
+    "sensor_id": 4,
+    "timestamp": "2015-08-04 14:29:42.397997-04:00",
+    "sensor_timestamp": "2015-08-05 04:06:56.140234-04:00",
+    "server_url": "https://cbserver:443/sensor/checkin/4",
+    "id": 287,
+    "failure_code": "-2134376413"
+  }
+]
+</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_api_v1_sensor__id__resourcestatus"><span class="parent">/api/v1/sensor/{id}</span>/resourcestatus</a> <span class="methods"><a href="#api_v1_sensor__id__resourcestatus_get"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span></a></span></h4></div><div id="panel_api_v1_sensor__id__resourcestatus" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#api_v1_sensor__id__resourcestatus_get'" class="list-group-item"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span><div class="method_description"><p>Get a JSON report of the sensor&#39;s resource usage</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="api_v1_sensor__id__resourcestatus_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span> <span class="parent">/api/v1/sensor/{id}</span>/resourcestatus</h4></div><div class="modal-body"><div class="alert alert-info"><p>Get a JSON report of the sensor&#39;s resource usage</p></div><div class="alert alert-warning"><span class="glyphicon glyphicon-lock" title="Authentication required"></span> Secured by cbSecurity</div><ul class="nav nav-tabs"><li class="active"><a href="#api_v1_sensor__id__resourcestatus_get_request" data-toggle="tab">Request</a></li><li><a href="#api_v1_sensor__id__resourcestatus_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="api_v1_sensor__id__resourcestatus_get_request"><h3>URI Parameters</h3><ul><li><strong>id</strong>: <em>required (string)</em></li></ul></div><div class="tab-pane" id="api_v1_sensor__id__resourcestatus_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>[
+  {
+    "handle_count": 321,
+    "sensor_id": 4,
+    "timestamp": "2015-08-04 14:29:42.397997-04:00",
+    "commit_charge": "11886592",
+    "page_faults": "552589",
+    "id": 13262
+  }
+]
+</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_api_v1_sensor_statistics"><span class="parent">/api/v1/sensor</span>/statistics</a> <span class="methods"><a href="#api_v1_sensor_statistics_get"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span></a></span></h4></div><div id="panel_api_v1_sensor_statistics" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#api_v1_sensor_statistics_get'" class="list-group-item"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span><div class="method_description"><p>Get a JSON report of the aggregate sensor queue statistics</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="api_v1_sensor_statistics_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span> <span class="parent">/api/v1/sensor</span>/statistics</h4></div><div class="modal-body"><div class="alert alert-info"><p>Get a JSON report of the aggregate sensor queue statistics</p></div><div class="alert alert-warning"><span class="glyphicon glyphicon-lock" title="Authentication required"></span> Secured by cbSecurity</div><ul class="nav nav-tabs"><li><a href="#api_v1_sensor_statistics_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane" id="api_v1_sensor_statistics_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
+  "active_sensor_count": 1,
+  "sensor_count": 4,
+  "num_eventlog_bytes": 2488259,
+  "num_storefiles_bytes": 5325824
+}
+</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_api_v1_license"><span class="parent">/api/v1</span>/license</a> <span class="methods"><a href="#api_v1_license_get"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span></a> <a href="#api_v1_license_post"><span class="badge badge_post">post <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span></a></span></h4></div><div id="panel_api_v1_license" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#api_v1_license_get'" class="list-group-item"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span><div class="method_description"><p>Get information about the Cb server&#39;s license status</p></div><div class="clearfix"></div></div><div onclick="window.location.href = '#api_v1_license_post'" class="list-group-item"><span class="badge badge_post">post <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span><div class="method_description"><p>Update the Cb server&#39;s license information</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="api_v1_license_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span> <span class="parent">/api/v1</span>/license</h4></div><div class="modal-body"><div class="alert alert-info"><p>Get information about the Cb server&#39;s license status</p></div><div class="alert alert-warning"><span class="glyphicon glyphicon-lock" title="Authentication required"></span> Secured by cbSecurity</div><ul class="nav nav-tabs"><li><a href="#api_v1_license_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane" id="api_v1_license_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
+  "license_end_date": "2017-01-01",
+  "license_request_block": "-- --- BEGIN CB LICENSE REQUEST --- --==\n-- --- END CB LICENSE REQUEST --- --\n",
+  "licensed_sensor_count_exceeded": false,
+  "license_valid": true,
+  "license_expired": false,
+  "licensed_sensor_count": 10000,
+  "actual_sensor_count": 1,
+  "server_token": "YWJjZGVhYmNkZWFiY2RlYWJjZGVhYmNkZWFiY2RlYWJj"
+}
+</code></pre></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="api_v1_license_post"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_post">post <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span> <span class="parent">/api/v1</span>/license</h4></div><div class="modal-body"><div class="alert alert-info"><p>Update the Cb server&#39;s license information</p></div><div class="alert alert-warning"><span class="glyphicon glyphicon-lock" title="Authentication required"></span> Secured by cbSecurity</div><ul class="nav nav-tabs"><li class="active"><a href="#api_v1_license_post_request" data-toggle="tab">Request</a></li></ul><div class="tab-content"><div class="tab-pane active" id="api_v1_license_post_request"><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
+  "license": "&lt;&lt;new license info&gt;&gt;"
+}
+</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_api_v1_binary"><span class="parent">/api/v1</span>/binary</a> <span class="methods"><a href="#api_v1_binary_get"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span></a> <a href="#api_v1_binary_post"><span class="badge badge_post">post <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span></a></span></h4></div><div id="panel_api_v1_binary" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#api_v1_binary_get'" class="list-group-item"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span><div class="method_description"><p>Search the Cb module (binary) data store</p></div><div class="clearfix"></div></div><div onclick="window.location.href = '#api_v1_binary_post'" class="list-group-item"><span class="badge badge_post">post <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span><div class="method_description"><p>Search the Cb module (binary) store</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="api_v1_binary_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span> <span class="parent">/api/v1</span>/binary</h4></div><div class="modal-body"><div class="alert alert-info"><p>Search the Cb module (binary) data store</p></div><div class="alert alert-warning"><span class="glyphicon glyphicon-lock" title="Authentication required"></span> Secured by cbSecurity</div><ul class="nav nav-tabs"><li class="active"><a href="#api_v1_binary_get_request" data-toggle="tab">Request</a></li><li><a href="#api_v1_binary_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="api_v1_binary_get_request"><h3>Query Parameters</h3><ul><li><strong>q</strong>: <em>(string)</em><p>Query string. See <a href="https://github.com/carbonblack/cbapi/blob/master/client_apis/docs/query_overview.pdf">https://github.com/carbonblack/cbapi/blob/master/client_apis/docs/query_overview.pdf</a></p><p><strong>Example</strong>:</p><pre>product_name:"Visual Studio"</pre></li><li><strong>start</strong>: <em>(string)</em><p>Starting result number for this batch</p></li><li><strong>sort</strong>: <em>(string - default: server_added_timestamp desc)</em><p>Sort by this field &amp; direction (asc or desc)</p></li><li><strong>facet</strong>: <em>(boolean - default: true)</em><p>Enable or disable facets for this query</p></li><li><strong>rows</strong>: <em>(integer - default: 10)</em><p>Number of rows to fetch</p></li></ul></div><div class="tab-pane" id="api_v1_binary_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
+  "total_results": 1, 
+  "facets": {}, 
+  "elapsed": 0.046832799911499023, 
+  "start": 0,
+  "results": [
+    {
+      "md5": "F2C7BB8ACC97F92E987A2D4087D021B1", 
+      "digsig_result": "Signed", 
+      "observed_filename": [
+        "c:\\windows\\system32\\notepad.exe"
+      ], 
+      "product_version": "6.1.7600.16385", 
+      "signed": "Signed", 
+      "digsig_sign_time": "2009-07-14T10:17:00Z", 
+      "orig_mod_len": 193536, 
+      "is_executable_image": true, 
+      "is_64bit": true, 
+      "digsig_publisher": "Microsoft Corporation", 
+      "file_version": "6.1.7600.16385 (win7_rtm.090713-1255)", 
+      "company_name": "Microsoft Corporation", 
+      "internal_name": "Notepad", 
+      "product_name": "Microsoft\u00ae Windows\u00ae Operating System", 
+      "digsig_result_code": "0", 
+      "timestamp": "2013-08-16T11:26:48.321Z", 
+      "copied_mod_len": 193536, 
+      "server_added_timestamp": "2013-08-16T11:26:48.321Z", 
+      "legal_copyright": "\u00a9 Microsoft Corporation. All rights reserved.", 
+      "original_filename": "NOTEPAD.EXE", 
+      "file_desc": "Notepad",
+      "os_type": "windows"
+    }
+  ],
+  "terms": [
+    "notepad.exe"
+  ],
+  "highlights": [
+    {
+      "name": "PREPREPRENOTEPAD.EXEPOSTPOSTPOST", 
+      "ids": [
+        "F2C7BB8ACC97F92E987A2D4087D021B1"
+      ]
+    }, 
+    {
+      "name": "c:\\windows\\system32\\PREPREPREnotepad.exePOSTPOSTPOST", 
+      "ids": [
+        "F2C7BB8ACC97F92E987A2D4087D021B1"
+      ]
+    }
+  ], 
+}</code></pre></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="api_v1_binary_post"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_post">post <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span> <span class="parent">/api/v1</span>/binary</h4></div><div class="modal-body"><div class="alert alert-info"><p>Search the Cb module (binary) store</p></div><div class="alert alert-warning"><span class="glyphicon glyphicon-lock" title="Authentication required"></span> Secured by cbSecurity</div><ul class="nav nav-tabs"><li class="active"><a href="#api_v1_binary_post_request" data-toggle="tab">Request</a></li><li><a href="#api_v1_binary_post_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="api_v1_binary_post_request"><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "$schema": "http://json-schema.org/draft-03/schema",
+  "required": true,
+  "type": "object",
+  "id": "http://jsonschema.net",
+  "properties": {
+    "q": {
+      "required": false,
+      "type": "string",
+      "description": "Query string. See https://github.com/carbonblack/cbapi/blob/master/client_apis/docs/query_overview.pdf",
+      "example": "product_name:\"Visual Studio\""
+    },
+    "start": {
+      "default": 0,
+      "required": false,
+      "description": "Starting result number for this batch"
+    },
+    "rows": {
+      "default": 10,
+      "required": false,
+      "type": "integer",
+      "description": "Number of rows to fetch"
+    },
+    "facet": {
+      "default": true,
+      "required": false,
+      "type": "boolean",
+      "description": "Enable or disable facets for this query"
+    },
+    "sort": {
+      "default": "server_added_timestamp desc",
+      "description": "Sort by this field &amp; direction (asc or desc)",
+      "required": false
+    }
+  }
+}
+</code></pre></div><div class="tab-pane" id="api_v1_binary_post_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
+  "total_results": 1, 
+  "facets": {}, 
+  "elapsed": 0.046832799911499023, 
+  "start": 0,
+  "results": [
+    {
+      "md5": "F2C7BB8ACC97F92E987A2D4087D021B1", 
+      "digsig_result": "Signed", 
+      "observed_filename": [
+        "c:\\windows\\system32\\notepad.exe"
+      ], 
+      "product_version": "6.1.7600.16385", 
+      "signed": "Signed", 
+      "digsig_sign_time": "2009-07-14T10:17:00Z", 
+      "orig_mod_len": 193536, 
+      "is_executable_image": true, 
+      "is_64bit": true, 
+      "digsig_publisher": "Microsoft Corporation", 
+      "file_version": "6.1.7600.16385 (win7_rtm.090713-1255)", 
+      "company_name": "Microsoft Corporation", 
+      "internal_name": "Notepad", 
+      "product_name": "Microsoft\u00ae Windows\u00ae Operating System", 
+      "digsig_result_code": "0", 
+      "timestamp": "2013-08-16T11:26:48.321Z", 
+      "copied_mod_len": 193536, 
+      "server_added_timestamp": "2013-08-16T11:26:48.321Z", 
+      "legal_copyright": "\u00a9 Microsoft Corporation. All rights reserved.", 
+      "original_filename": "NOTEPAD.EXE", 
+      "file_desc": "Notepad",
+      "os_type": "windows"
+    }
+  ],
+  "terms": [
+    "notepad.exe"
+  ],
+  "highlights": [
+    {
+      "name": "PREPREPRENOTEPAD.EXEPOSTPOSTPOST", 
+      "ids": [
+        "F2C7BB8ACC97F92E987A2D4087D021B1"
+      ]
+    }, 
+    {
+      "name": "c:\\windows\\system32\\PREPREPREnotepad.exePOSTPOSTPOST", 
+      "ids": [
+        "F2C7BB8ACC97F92E987A2D4087D021B1"
+      ]
+    }
+  ], 
+}</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_api_v1_binary__md5_hash_"><span class="parent">/api/v1/binary</span>/{md5_hash}</a> <span class="methods"><a href="#api_v1_binary__md5_hash__get"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span></a></span></h4></div><div id="panel_api_v1_binary__md5_hash_" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#api_v1_binary__md5_hash__get'" class="list-group-item"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span><div class="method_description"><p>Download the binary identifed by the {md5_hash}. Returns a zipped file containing two files - "filedata" and "metadata". Note that the MD5 hash MUST be in all UPPER CASE.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="api_v1_binary__md5_hash__get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span> <span class="parent">/api/v1/binary</span>/{md5_hash}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Download the binary identifed by the {md5_hash}. Returns a zipped file containing two files - "filedata" and "metadata". Note that the MD5 hash MUST be in all UPPER CASE.</p></div><div class="alert alert-warning"><span class="glyphicon glyphicon-lock" title="Authentication required"></span> Secured by cbSecurity</div><ul class="nav nav-tabs"><li class="active"><a href="#api_v1_binary__md5_hash__get_request" data-toggle="tab">Request</a></li></ul><div class="tab-content"><div class="tab-pane active" id="api_v1_binary__md5_hash__get_request"><h3>URI Parameters</h3><ul><li><strong>md5_hash</strong>: <em>required (string)</em></li></ul><h3>Body</h3><p><strong>Type: application/zip</strong></p></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_api_v1_binary__md5_hash__icon"><span class="parent">/api/v1/binary/{md5_hash}</span>/icon</a> <span class="methods"><a href="#api_v1_binary__md5_hash__icon_get"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span></a></span></h4></div><div id="panel_api_v1_binary__md5_hash__icon" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#api_v1_binary__md5_hash__icon_get'" class="list-group-item"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span><div class="method_description"><p>Download the icon associated with the {md5_hash}. Note that the MD5 hash MUST be in all UPPER CASE.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="api_v1_binary__md5_hash__icon_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span> <span class="parent">/api/v1/binary/{md5_hash}</span>/icon</h4></div><div class="modal-body"><div class="alert alert-info"><p>Download the icon associated with the {md5_hash}. Note that the MD5 hash MUST be in all UPPER CASE.</p></div><div class="alert alert-warning"><span class="glyphicon glyphicon-lock" title="Authentication required"></span> Secured by cbSecurity</div><ul class="nav nav-tabs"><li class="active"><a href="#api_v1_binary__md5_hash__icon_get_request" data-toggle="tab">Request</a></li></ul><div class="tab-content"><div class="tab-pane active" id="api_v1_binary__md5_hash__icon_get_request"><h3>URI Parameters</h3><ul><li><strong>md5_hash</strong>: <em>required (string)</em></li></ul><h3>Body</h3><p><strong>Type: image/png</strong></p></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_api_v1_binary__md5_hash__summary"><span class="parent">/api/v1/binary/{md5_hash}</span>/summary</a> <span class="methods"><a href="#api_v1_binary__md5_hash__summary_get"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span></a></span></h4></div><div id="panel_api_v1_binary__md5_hash__summary" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#api_v1_binary__md5_hash__summary_get'" class="list-group-item"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span><div class="method_description"><p>Get the metadata associated with the binary {md5_hash}. Note that the MD5 hash MUST be in all UPPER CASE.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="api_v1_binary__md5_hash__summary_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span> <span class="parent">/api/v1/binary/{md5_hash}</span>/summary</h4></div><div class="modal-body"><div class="alert alert-info"><p>Get the metadata associated with the binary {md5_hash}. Note that the MD5 hash MUST be in all UPPER CASE.</p></div><div class="alert alert-warning"><span class="glyphicon glyphicon-lock" title="Authentication required"></span> Secured by cbSecurity</div><ul class="nav nav-tabs"><li class="active"><a href="#api_v1_binary__md5_hash__summary_get_request" data-toggle="tab">Request</a></li></ul><div class="tab-content"><div class="tab-pane active" id="api_v1_binary__md5_hash__summary_get_request"><h3>URI Parameters</h3><ul><li><strong>md5_hash</strong>: <em>required (string)</em></li></ul><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "$schema": "http://json-schema.org/draft-03/schema",
+  "required": true,
+  "type": "object",
+  "id": "http://jsonschema.net",
+  "properties": {
+    "host_count": {
+      "required": true,
+      "type": "string",
+      "description": "count of unique endpoints which have ever reported this binary"
+    },
+    "digsig_result": {
+      "required": true,
+      "type": "string",
+      "description": "Digital signature status. One of Signed, Unsigned, Expired, Bad Signature, Invalid Signature, Invalid Chain, Untrusted Root, Explicit Distrust"
+    },
+    "observed_filename": {
+      "required": true,
+      "type": "string",
+      "description": "The set of unique filenames this binary has been seen as"
+    },
+    "product_version": {
+      "required": true,
+      "type": "string",
+      "description": "If present, Product version from [FileVersionInformation](http://msdn.microsoft.com/en-us/library/system.diagnostics.fileversioninfo.aspx)"
+    },
+    "digsig_issuer": {
+      "required": true,
+      "type": "string",
+      "description": "If signed and present, the issuer name"
+    },
+    "signed": {
+      "required": true,
+      "type": "string",
+      "description": "Digital signature status. One of Signed, Unsigned, Expired, Bad Signature, Invalid Signature, Invalid Chain, Untrusted Root, Explicit Distrust"
+    },
+    "digsig_sign_time": {
+      "required": true,
+      "type": "string",
+      "description": "If signed, the timestamp of the signature in GMT"
+    },
+    "private_build": {
+      "required": true,
+      "type": "string",
+      "description": "If present, Private build from [FileVersionInformation](http://msdn.microsoft.com/en-us/library/system.diagnostics.fileversioninfo.aspx)"
+    },
+    "orig_mod_len": {
+      "required": true,
+      "type": "string",
+      "description": "Filesize in bytes"
+    },
+    "is_executable_image": {
+      "required": true,
+      "type": "string",
+      "description": "true or false - true if an EXE"
+    },
+    "is_64bit": {
+      "required": true,
+      "type": "string",
+      "description": "true or false - true if x64"
+    },
+    "digsig_subject": {
+      "required": true,
+      "type": "string",
+      "description": "If signed and present, the subject"
+    },
+    "alliance_score_virustotal": {
+      "required": true,
+      "type": "string",
+      "description": "If enabled and the hit count &gt; 1, the number of [VirusTotal](http://virustotal.com) hits for this md5"
+    },
+    "digsig_publisher": {
+      "required": true,
+      "type": "string",
+      "description": "If signed and present, the publisher name"
+    },
+    "legal_trademark": {
+      "required": true,
+      "type": "string",
+      "description": "If present, Legal trademark from [FileVersionInformation](http://msdn.microsoft.com/en-us/library/system.diagnostics.fileversioninfo.aspx)"
+    },
+    "company_name": {
+      "required": true,
+      "type": "string",
+      "description": "If present, Company name from [FileVersionInformation](http://msdn.microsoft.com/en-us/library/system.diagnostics.fileversioninfo.aspx)"
+    },
+    "internal_name": {
+      "required": true,
+      "type": "string",
+      "description": "If present, Internal name from [FileVersionInformation](http://msdn.microsoft.com/en-us/library/system.diagnostics.fileversioninfo.aspx)"
+    },
+    "product_name": {
+      "required": true,
+      "type": "string",
+      "description": "If present, Product name from [FileVersionInformation](http://msdn.microsoft.com/en-us/library/system.diagnostics.fileversioninfo.aspx)"
+    },
+    "digsig_result_code": {
+      "required": true,
+      "type": "string",
+      "description": "HRESULT_FROM_WIN32 for the result of the digital signature operation via [WinVerifyTrust](http://msdn.microsoft.com/en-us/library/windows/desktop/aa388208)"
+    },
+    "file_Version": {
+      "required": true,
+      "type": "string",
+      "description": "If present, File version from [FileVersionInformation](http://msdn.microsoft.com/en-us/library/system.diagnostics.fileversioninfo.aspx)"
+    },
+    "copied_mod_len": {
+      "required": true,
+      "type": "string",
+      "description": "Bytes copied from remote host, if file is &gt; 25MB this will be less than orig_mod_len"
+    },
+    "server_added_timestamp": {
+      "required": true,
+      "type": "string",
+      "description": "the first time this binary was received on the server in the server GMT time"
+    },
+    "digsig_prog_name": {
+      "required": true,
+      "type": "string",
+      "description": "If signed and present, the program name"
+    },
+    "md5": {
+      "required": true,
+      "type": "string",
+      "description": "the md5 hash of this binary"
+    },
+    "special_build": {
+      "required": true,
+      "type": "string",
+      "description": "If present, Special build from [FileVersionInformation](http://msdn.microsoft.com/en-us/library/system.diagnostics.fileversioninfo.aspx)"
+    },
+    "legal_copyright": {
+      "required": true,
+      "type": "string",
+      "description": "If present, Legal copyright from [FileVersionInformation](http://msdn.microsoft.com/en-us/library/system.diagnostics.fileversioninfo.aspx)"
+    },
+    "original_filename": {
+      "required": true,
+      "type": "string",
+      "description": "If present, Original filename from [FileVersionInformation](http://msdn.microsoft.com/en-us/library/system.diagnostics.fileversioninfo.aspx)"
+    },
+    "os_type": {
+      "required": true,
+      "type": "string",
+      "description": "operating system type of this binary; one of windows, linux, osx"
+    },
+    "file_desc": {
+      "required": true,
+      "type": "string",
+      "description": "If present, File description from [FileVersionInformation](http://msdn.microsoft.com/en-us/library/system.diagnostics.fileversioninfo.aspx)"
+    }
+  }
+}</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_api_about"><span class="parent">/api</span>/about</a> <span class="methods"><a href="#api_about_get"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span></a></span></h4></div><div id="panel_api_about" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#api_about_get'" class="list-group-item"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span><div class="method_description"><p>Get the version information for this Cb server</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="api_about_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span> <span class="parent">/api</span>/about</h4></div><div class="modal-body"><div class="alert alert-info"><p>Get the version information for this Cb server</p></div><div class="alert alert-warning"><span class="glyphicon glyphicon-lock" title="Authentication required"></span> Secured by cbSecurity</div><ul class="nav nav-tabs"><li class="active"><a href="#api_about_get_request" data-toggle="tab">Request</a></li></ul><div class="tab-content"><div class="tab-pane active" id="api_about_get_request"><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
+  "version": "cb-enterprise-5.1.0.150625.0500-1.el6.x86_64"
+}
+</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_api_auth"><span class="parent">/api</span>/auth</a> <span class="methods"><a href="#api_auth_get"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span></a></span></h4></div><div id="panel_api_auth" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#api_auth_get'" class="list-group-item"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span><div class="method_description"><p>Authenticate to the Cb server and retrieve the login token for the user. Use HTTP Digest Authentication to pass the username and password to this API route. Upon successful authentication, this route will return a JSON document with the authorization and API token information for the user.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="api_auth_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span> <span class="parent">/api</span>/auth</h4></div><div class="modal-body"><div class="alert alert-info"><p>Authenticate to the Cb server and retrieve the login token for the user. Use HTTP Digest Authentication to pass the username and password to this API route. Upon successful authentication, this route will return a JSON document with the authorization and API token information for the user.</p></div><div class="alert alert-warning"><span class="glyphicon glyphicon-lock" title="Authentication required"></span> Secured by digest</div><ul class="nav nav-tabs"><li class="active"><a href="#api_auth_get_request" data-toggle="tab">Request</a></li></ul><div class="tab-content"><div class="tab-pane active" id="api_auth_get_request"><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
+  "username": "admin",
+  "first_name": "admin",
+  "last_name": "admin",
+  "user_id": 1,
+  "global_admin": true,
+  "auth_token": "0c03fb91e17987eed93f60007b08daa0"
+}
+</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_api_builds"><span class="parent">/api</span>/builds</a> <span class="methods"><a href="#api_builds_get"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span></a></span></h4></div><div id="panel_api_builds" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#api_builds_get'" class="list-group-item"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span><div class="method_description"><p>Retrieve the build versions of the Windows sensors available from this server.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="api_builds_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span> <span class="parent">/api</span>/builds</h4></div><div class="modal-body"><div class="alert alert-info"><p>Retrieve the build versions of the Windows sensors available from this server.</p></div><div class="alert alert-warning"><span class="glyphicon glyphicon-lock" title="Authentication required"></span> Secured by cbSecurity</div><ul class="nav nav-tabs"><li class="active"><a href="#api_builds_get_request" data-toggle="tab">Request</a></li></ul><div class="tab-content"><div class="tab-pane active" id="api_builds_get_request"><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>[{"version_string": "005.001.000.50618"}, {"version_string": "005.000.001.50401"}, {"version_string": "005.000.000.50122"}]
+</code></pre></div></div></div></div></div></div></div></div></div></div></div><div class="col-md-3"><div id="sidebar" class="hidden-print affix" role="complementary"><ul class="nav nav-pills nav-stacked"><li><a href="#api">/api</a></li></ul></div></div></div></div></body></html>
